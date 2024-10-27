@@ -12,7 +12,7 @@ public class TriangleBlockCount {
      */
 
     public static void main(String[]args){
-        System.out.println(triangle(2));
+        System.out.println("The number of blocks are: " +triangle(2));
 
     }
     public static Integer triangle(Integer n){

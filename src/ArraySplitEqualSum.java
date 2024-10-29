@@ -6,11 +6,11 @@ public class ArraySplitEqualSum {
     static List<Integer> nums = List.of(2,3,5);
 
     public static void main(String[] args) {
-        System.out.println(split53(nums));
+        System.out.println(splitArray(nums));
 
     }
 
-    public static Boolean split53(List<Integer> nums) {
+    public static Boolean splitArray(List<Integer> nums) {
         Integer sum = 0;
         for (Integer number : nums) {
             sum += number;

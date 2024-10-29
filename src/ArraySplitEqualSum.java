@@ -1,7 +1,7 @@
 
 import java.util.List;
 
-public class ArraySplitWithConstraints {
+public class ArraySplitEqualSum {
 
     static List<Integer> nums = List.of(2,3,5);
 

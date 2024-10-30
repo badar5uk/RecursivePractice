@@ -7,15 +7,13 @@ public class ExtractionOfParenthesisAndContents {
 
     public static String parenBit(String str) {
 
-        if (str.charAt(0) != '(' ) {
+        if (str.charAt(0) != '(') {
             str = parenBit(str.substring(1));
-            return str;
-        } else if(str.charAt(str.length() - 1) != ')') {
-            str = parenBit(str.substring(0,str.length()-1));
-            return str;
-        } else{
-            return str;
+        } else if (str.charAt(str.length() - 1) != ')') {
+            str = parenBit(str.substring(0, str.length() - 1));
         }
+        return str;
+
     }
 }
 

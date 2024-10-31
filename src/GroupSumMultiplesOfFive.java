@@ -16,8 +16,8 @@ public class GroupSumMultiplesOfFive {
                  - it would iterate to get to the target, once it is met it returns true
 
                 */
-    static List<Integer> nums = new ArrayList<>(Arrays.asList(2, 5, 10, 4));
-    static Integer target = 19;
+    static List<Integer> nums = new ArrayList<>(Arrays.asList(2, 5, 1, 4));
+    static Integer target = 6;
 
     static List<Integer> tempListMultiples = new ArrayList<>();
 
@@ -27,8 +27,8 @@ public class GroupSumMultiplesOfFive {
     }
 
     public static Boolean helperSumChecker() {
-        Integer sumFive = 0;
 
+        Integer sumFive = 0;
         for (Integer num : nums) {
             if (num % 5 == 0) {
                 tempListMultiples.add(num);
@@ -38,13 +38,15 @@ public class GroupSumMultiplesOfFive {
 
         if (sumFive == target) {
             return true;
-        } else {
+        } else if (followedByOne(nums, 0) == false) {
             for (Integer tempNum : tempListMultiples) {
                 nums.remove(tempNum);
             }
             return groupSum5(0, nums, target, sumFive);
-        }
 
+        } else {
+            return false;
+        }
     }
 
 
@@ -56,6 +58,16 @@ public class GroupSumMultiplesOfFive {
             return false;
         } else {
             return groupSum5(index + 1, nums, target, sumFive);
+        }
+    }
+
+    public static Boolean followedByOne(List<Integer> nums, Integer index) {
+        if ((nums.get(index) % 5 == 0) && (nums.get(index + 1) == 1)) {
+            return true;
+        } else if (index == nums.size() - 1) {
+            return false;
+        } else {
+            return followedByOne(nums, index + 1);
         }
     }
 }

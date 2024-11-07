@@ -12,7 +12,7 @@ public class GroupSumClumpIdentical {
              - if none are found, it would try and sum the non identical values to reach the target.System.out.println("Enter School Name, enter 0 to end: ");
 
      */
-    static List<Integer> nums = Arrays.asList(1, 2, 4, 8, 1);
+    static List<Integer> nums = Arrays.asList(2,4,4,8);
     static Integer target = 14;
 
 
@@ -25,16 +25,16 @@ public class GroupSumClumpIdentical {
     public static Boolean groupSumClump(Integer index, List<Integer> nums, Integer target, Integer sum, Integer twin) {
         if (sum + twin == target) {
             return true;
-        } else if (index < nums.size() -1 && nums.get(index) != nums.get(index + 1)) {
-            sum += nums.get(index);
-            return groupSumClump(index + 1, nums, target, sum, twin);
-        } else if (index < nums.size()-1 && nums.get(index) == nums.get(index + 1)) {
-            twin = nums.get(index);
-            return groupSumClump(index + 2, nums, target, sum, twin * 2);
-        } else if (index == nums.size() - 1) {
+        } else if (index == (nums.size() - 1)) {
             sum = 0;
             twin = 0;
-            return groupSumClump(1, nums, target, sum, twin);
+            return groupSumClump(index +1 , nums, target, sum, twin);
+        }else if (index < nums.size() - 1  && nums.get(index) != nums.get(index + 1)) {
+            sum += nums.get(index);
+            return groupSumClump(index + 1, nums, target, sum, twin);
+        } else if (index < nums.size() - 1 && nums.get(index) == nums.get(index + 1)) {
+            twin = nums.get(index);
+            return groupSumClump(index + 2, nums, target, sum, twin * 2);
         } else if (index >= nums.size()) {
             return false;
         } else {

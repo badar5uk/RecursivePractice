@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class GroupSumClumpIdentical {
 
@@ -17,26 +19,25 @@ public class GroupSumClumpIdentical {
 
 
     public static void main(String[] args) {
-        System.out.println(groupSumClump( 0, nums, target, 0, 0));
+        System.out.println(groupSumClump( 0,0, nums, target, 0, 0));
 
     }
 
 
-    public static Boolean groupSumClump(Integer index, List<Integer> nums, Integer target, Integer sum, Integer twin) {
-        if (sum + twin == target) {
+    public static Boolean groupSumClump(Integer start, Integer index, List<Integer> nums, Integer target, Integer sum, Integer twin) {
+        List<Integer> newlist = new ArrayList<>(nums.subList(start, nums.size()));
+        if (sum + twin == target || sum.equals(target)) {
             return true;
-        } else if (index == (nums.size() - 1)) {
-            sum = 0;
-            twin = 0;
-            return groupSumClump(index +1 , nums, target, sum, twin);
-        }else if (index < nums.size() - 1  && nums.get(index) != nums.get(index + 1)) {
-            sum += nums.get(index);
-            return groupSumClump(index + 1, nums, target, sum, twin);
-        } else if (index < nums.size() - 1 && nums.get(index) == nums.get(index + 1)) {
-            twin = nums.get(index);
-            return groupSumClump(index + 2, nums, target, sum, twin * 2);
-        } else if (index >= nums.size()) {
-            return false;
+        }
+        else if (index == (newlist.size() - 1)) {
+            index = 0;
+            return groupSumClump(1,index, newlist, target, 0, 0);
+        }else if (index < newlist.size()  && !Objects.equals(newlist.get(index), newlist.get(index + 1))) {
+            sum += newlist.get(index);
+            return groupSumClump(0,index + 1, newlist, target, sum, twin);
+        } else if (index < newlist.size()  && Objects.equals(newlist.get(index), newlist.get(index + 1))) {
+            twin = newlist.get(index);
+            return groupSumClump(0,index + 2, newlist, target, sum, twin * 2);
         } else {
             return false;
         }
